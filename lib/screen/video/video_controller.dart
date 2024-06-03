@@ -11,12 +11,18 @@ class VideoController {
   String? videoId;
   bool showAppBar = false;
   Timer? hideAppBarTimer;
-  final String apiKey = 'INSER_YOUR_API_HERE';
+  final String apiKey = 'YOUR_API_KEY';
   final String folderId = '1Phf33_WkxOHhYAKeNVSTdvhT2jK4n9AA';
   List<String>? lastEpisodeView;
 
   void setFullscreenMode() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarIconBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.dark,
+    ));
   }
 
   Future<List<String>?> lastEpisodeViewed(String episode) async {

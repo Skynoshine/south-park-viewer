@@ -25,7 +25,7 @@ class _VideoScreenState extends State<VideoScreen> {
   void initState() {
     super.initState();
     _fetchVideosFromDrive();
-    ct.setFullscreenMode;
+    ct.setFullscreenMode();
     ct.setInitialOrientation(context);
   }
 
@@ -83,29 +83,27 @@ class _VideoScreenState extends State<VideoScreen> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: _toggleAppBarVisibility,
-      child: SafeArea(
-        child: Scaffold(
-          appBar: ct.showAppBar
-              ? AppBar(
-                  backgroundColor: Colors.black,
-                  leading: IconButton(
-                    icon: const Icon(Icons.arrow_back),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
+      child: Scaffold(
+        appBar: ct.showAppBar
+            ? AppBar(
+                backgroundColor: Colors.black,
+                leading: IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              )
+            : null,
+        body: ct.isLoading
+            ? const Center(child: CircularProgressIndicator())
+            : ct.videoId == null
+                ? const Center(child: Text('Content not found'))
+                : WebViewWidget(
+                    controller: WebViewController()
+                      ..loadHtmlString(embed.htmlContent(ct.videoId!))
+                      ..setJavaScriptMode(JavaScriptMode.unrestricted),
                   ),
-                )
-              : null,
-          body: ct.isLoading
-              ? const Center(child: CircularProgressIndicator())
-              : ct.videoId == null
-                  ? const Center(child: Text('Content not found'))
-                  : WebViewWidget(
-                      controller: WebViewController()
-                        ..loadHtmlString(embed.htmlContent(ct.videoId!))
-                        ..setJavaScriptMode(JavaScriptMode.unrestricted),
-                    ),
-        ),
       ),
     );
   }
