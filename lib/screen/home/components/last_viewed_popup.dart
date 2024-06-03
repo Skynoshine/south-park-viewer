@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
+import 'package:myapp/screen/home/controller/home_controller.dart';
 import 'package:myapp/screen/video/video.dart';
 import 'package:myapp/services/cache/local_cache.dart';
 
@@ -68,12 +70,15 @@ class _LastViewedPopupState extends State<LastViewedPopup> {
                 final episodeCache = await widget.cache.get(widget.cacheKey);
                 Navigator.of(context).pop();
                 if (episodeCache != null) {
+                  final season = await HomeController()
+                      .selectedFormatedSeason(episodeCache.first);
+                  Logger().d('SEASON: $season');
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => VideoScreen(
                         episode: episodeCache.first,
-                        season: widget.selectedSeason,
+                        season: season,
                       ),
                     ),
                   );

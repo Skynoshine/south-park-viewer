@@ -43,7 +43,7 @@ class DriveController {
     }
   }
 
-  List<String> _extractSeasonAndEpisode(String fileName) {
+  List<String> extractSeasonAndEpisode(String fileName) {
     final regExp1 = RegExp(r'[sS](\d+)[eE](\d+)');
     final regExp2 = RegExp(r'(\d+)[eE](\d+)');
 
@@ -67,7 +67,7 @@ class DriveController {
     Logger().d('Formatted Episode: $formattedEpisode');
 
     for (var video in videoData) {
-      final seasonAndEpisode = _extractSeasonAndEpisode(video['title']!);
+      final seasonAndEpisode = extractSeasonAndEpisode(video['title']!);
       Logger().d(
           'Checking video: ${video['title']}, Season: ${seasonAndEpisode[0]}, Episode: ${seasonAndEpisode[1]}');
 

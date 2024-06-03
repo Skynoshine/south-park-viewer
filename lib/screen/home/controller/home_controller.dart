@@ -15,6 +15,13 @@ class HomeController {
     return await Webscrap().southParkStudios(season: selectedSeason);
   }
 
+  Future<String> selectedFormatedSeason(String file) async {
+    final formattedEpisode =
+        file.replaceAll('T', '').replaceAll('E', '').replaceAll(' • ', 'e');
+    final format = formattedEpisode.split('e')[0].padLeft(1);
+    return format;
+  }
+
   Future<List<String>?> watching(String key) async {
     return await cache.get(key);
   }
