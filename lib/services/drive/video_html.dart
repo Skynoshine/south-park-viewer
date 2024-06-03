@@ -5,23 +5,26 @@ String htmlContent(String videoId) {
     <head>
       <title>Video Player</title>
       <style>
-        body {
+        html, body {
           margin: 0;
           padding: 0;
+          width: 100%;
+          height: 100%;
           display: flex;
           justify-content: center;
           align-items: center;
-          height: 100vh;
           background-color: #000;
         }
         .video-container {
-          position: relative;
-          width: 80%;
-          max-width: 960px;
-          height: 56.25%; /* 16:9 Aspect Ratio */
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-          border-radius: 10px;
-          overflow: hidden;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: #000;
         }
         iframe {
           width: 100%;

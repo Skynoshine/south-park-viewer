@@ -1,8 +1,8 @@
 class EpisodeEntity {
   final List<String> title;
-  final List<String> image;
-  final List<String> hrefs;
-  final List<String> descriptions;
+  final List<String>? image;
+  final List<String>? hrefs;
+  final List<String>? descriptions;
   final List<String> episodes;
 
   EpisodeEntity({
